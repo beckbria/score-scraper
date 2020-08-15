@@ -45,8 +45,11 @@ def download(url, title):
     datePieces = extractDate(url)
     localFile = path.join(config.download_dir, formatName(datePieces, title))
     if not path.exists(localFile):
-        remote = requests.get(url, allow_redirects=True)
-        open(localFile, 'wb').write(remote.content)
+        if config.dry_run:
+            print("Downloading %s\n" % url)
+        else:
+            remote = requests.get(url, allow_redirects=True)
+            open(localFile, 'wb').write(remote.content)
 
 def extractDate(url):
     fileRegex = re.compile(r'https://daisy.allclassical.org/ondemand/([\d]+)-([\d]+)-([\d]+).*')
