@@ -1,0 +1,5 @@
+# The directory to download files to
+download_dir = "/home/example/"
+
+# If true, doesn't send mail or update storage - just prints to stdout
+dry_run = False
